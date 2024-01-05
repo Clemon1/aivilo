@@ -1,4 +1,3 @@
-import { response } from "express";
 import booking from "../model/bookingModel.js";
 import cars from "../model/carsModel.js";
 import notification from "../model/notificationModel.js";
@@ -143,14 +142,17 @@ export const createBooking = async (req, res) => {
       $push: { currentBookings: saveBooking._id },
     });
 
+    const carOwner = await cars.findById(saveBooking.carId);
+    console.log(carOwner);
     // Adding notification after booking was successful
-    await notification.create({
-      userId: userId,
+    const noti = await notification.create({
+      userId: carOwner.user,
       title: "New Booking",
-      message: `User with email:${email}, 
-        and fullname:${fullName}, has rented car ${carId}`,
+      message: `${carOwner.name} has been booked by ${fullName} from ${Date(
+        dateFrom,
+      )} to ${Date(dateTo)}`,
     });
-
+    console.log(noti);
     res.status(200).json("Booked successfully");
   } catch (err) {
     return res.status(500).json(err.message);

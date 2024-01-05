@@ -85,7 +85,8 @@ const SingleCar = () => {
       });
     }
   };
-  // const carOwner = data && data.user && data.user._id;
+  const carOwner = data && data.user && data.user._id;
+  const loginUser = user && user.otherInfo && user.otherInfo._id;
 
   return (
     <Box className='home1' width={"100%"} height={"fit-content"} bg={"#00111C"}>
@@ -295,31 +296,17 @@ const SingleCar = () => {
                       />
                     </FormControl>
                   </Flex>
-                  {data &&
-                  data.user &&
-                  data.user._id === user &&
-                  user.otherInfo &&
-                  user.otherInfo._id ? (
-                    <Button
-                      width={"full"}
-                      bg={"#00e995"}
-                      disabled
-                      rounded={12}
-                      mt={4}
-                      color={"#001a2c"}>
-                      Book Car1
-                    </Button>
-                  ) : (
-                    <Button
-                      width={"full"}
-                      bg={"#00e995"}
-                      type='submit'
-                      rounded={12}
-                      mt={4}
-                      color={"#001a2c"}>
-                      Book Car2
-                    </Button>
-                  )}
+
+                  <Button
+                    width={"full"}
+                    bg={"#00e995"}
+                    isDisabled={loginUser === carOwner}
+                    rounded={12}
+                    mt={4}
+                    type='submit'
+                    color={"#001a2c"}>
+                    Book Car
+                  </Button>
                 </form>
                 {dateFrom | (dateTo === "") ? (
                   ""
