@@ -153,6 +153,7 @@ export const createBooking = async (req, res) => {
       )} to ${Date(dateTo)}`,
     });
     console.log(noti);
+
     res.status(200).json("Booked successfully");
   } catch (err) {
     return res.status(500).json(err.message);
