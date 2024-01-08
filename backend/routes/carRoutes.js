@@ -28,7 +28,7 @@ router.get("/userCar", viewUsersCars);
 router.get("/:location", recommendCars);
 
 router.get("/single/:id", viewSingleCar);
-router.post("/create", upload.single("image"), createCars);
+router.post("/create", upload.single("photo"), createCars);
 
 router.patch("/:id", updateCars);
 router.patch("/car/:id", rate_And_CommentCar);

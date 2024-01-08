@@ -5,6 +5,7 @@ import {
   Text,
   TableContainer,
   Table,
+  Image,
   Thead,
   Tbody,
   Tr,
@@ -28,16 +29,27 @@ const MyVehicle = () => {
         <Sidebar />
         <Box width={"100%"} height={"100vh"} bg={"#00111C"} paddingY={4}>
           <TopNav />
-          <Box paddingX={10} paddingY={2} width={"full"} height={"8vh"}>
+          <Flex
+            justifyContent={"space-between"}
+            paddingX={10}
+            paddingY={2}
+            width={"full"}
+            height={"8vh"}>
             <Text fontSize={20} fontWeight={500} color={"#ffffff"}>
               My Vehicles
             </Text>
-          </Box>
+            <Link to={"/createCar"}>
+              <Button bg={"#00e995"} color={"#001a2c"} rounded={12}>
+                Add Vehicle
+              </Button>
+            </Link>
+          </Flex>
 
           <Flex
             bg={"#00111C"}
             width={"100%"}
-            height={"150vh"}
+            height={"fit-content"}
+            paddingY={4}
             paddingX={10}
             justifyContent={"center"}>
             <TableContainer
@@ -49,7 +61,7 @@ const MyVehicle = () => {
               <Table colorScheme='teal' rounded={12}>
                 <Thead>
                   <Tr>
-                    <Th color={"#ffffff"}>Car ID</Th>
+                    <Th color={"#ffffff"}>Car</Th>
                     <Th color={"#ffffff"}>Car Name</Th>
                     <Th color={"#ffffff"}> Car Type </Th>
                     <Th color={"#ffffff"}> Price (£)</Th>
@@ -60,11 +72,19 @@ const MyVehicle = () => {
                   {cars.map((car) => (
                     <>
                       <Tr key={car._id}>
-                        <Td color={"#ffffff"}>{car._id}</Td>
+                        <Td color={"#ffffff"}>
+                          {" "}
+                          <Image
+                            width={"80%"}
+                            height={"10vh"}
+                            rounded={12}
+                            objectFit={"cover"}
+                            src={`http://localhost:4000/${car.image}`}
+                          />
+                        </Td>
                         <Td color={"#ffffff"}>{car.name}</Td>
                         <Td color={"#ffffff"}>{car.vehicleType}</Td>
                         <Td color={"#ffffff"}>{car.price}</Td>
-
                         <Td color={"#ffffff"}>
                           <Link to={`/car/${car._id}`}>
                             <Button rounded={12}>Details</Button>

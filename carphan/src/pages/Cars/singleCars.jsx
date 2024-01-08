@@ -261,94 +261,107 @@ const SingleCar = () => {
               </Flex>
             </Flex>
             <Flex width={"50%"} justifyContent={"center"} position={"relative"}>
-              <Box
-                width={"35%"}
-                bg={"#00283F"}
-                transition={".3s ease-in-out all"}
-                height={"fit-content"}
-                position={"fixed"}
-                p={6}
-                rounded={12}>
-                <form onSubmit={handleBooking}>
-                  <Flex width={"full"} justifyContent={"space-between"} gap={2}>
-                    <FormControl>
-                      <FormLabel color={"#ffffff"} fontSize={18}>
-                        From
-                      </FormLabel>
-                      <Input
-                        onChange={(e) => setFromDate(e.target.value)}
-                        color={"#ffffff"}
-                        rounded={12}
-                        fontWeight={500}
-                        type='date'
-                      />
-                    </FormControl>
-                    <FormControl>
-                      <FormLabel color={"#ffffff"} fontSize={18}>
-                        To
-                      </FormLabel>
-                      <Input
-                        onChange={(e) => setToDate(e.target.value)}
-                        color={"#ffffff"}
-                        rounded={12}
-                        fontWeight={500}
-                        type='date'
-                      />
-                    </FormControl>
-                  </Flex>
+              {loginUser === carOwner ? (
+                <Box
+                  width={"90%"}
+                  bg={"#00283F"}
+                  rounded={12}
+                  transition={".3s ease-in-out all"}
+                  height={"100vh"}
+                  position={"relative"}></Box>
+              ) : (
+                <Box
+                  width={"35%"}
+                  bg={"#00283F"}
+                  transition={".3s ease-in-out all"}
+                  height={"fit-content"}
+                  position={"fixed"}
+                  p={6}
+                  rounded={12}>
+                  <form onSubmit={handleBooking}>
+                    <Flex
+                      width={"full"}
+                      justifyContent={"space-between"}
+                      gap={2}>
+                      <FormControl>
+                        <FormLabel color={"#ffffff"} fontSize={18}>
+                          From
+                        </FormLabel>
+                        <Input
+                          onChange={(e) => setFromDate(e.target.value)}
+                          color={"#ffffff"}
+                          rounded={12}
+                          fontWeight={500}
+                          type='date'
+                        />
+                      </FormControl>
+                      <FormControl>
+                        <FormLabel color={"#ffffff"} fontSize={18}>
+                          To
+                        </FormLabel>
+                        <Input
+                          onChange={(e) => setToDate(e.target.value)}
+                          color={"#ffffff"}
+                          rounded={12}
+                          fontWeight={500}
+                          type='date'
+                        />
+                      </FormControl>
+                    </Flex>
 
-                  <Button
-                    width={"full"}
-                    bg={"#00e995"}
-                    isDisabled={loginUser === carOwner}
-                    rounded={12}
-                    mt={4}
-                    type='submit'
-                    color={"#001a2c"}>
-                    Book Car
-                  </Button>
-                </form>
-                {dateFrom | (dateTo === "") ? (
-                  ""
-                ) : (
-                  <Flex
-                    width={"100%"}
-                    alignItems={"center"}
-                    justifyContent={"center"}>
-                    <UnorderedList
-                      px={4}
-                      width={"90%"}
-                      pt={4}
-                      listStyleType={"none"}
-                      color={"#ffffff"}
-                      fontSize={17}
-                      fontWeight={600}>
-                      <Text fontWeight={600} fontSize={20}>
-                        Summary
-                      </Text>
-                      <ListItem
-                        display={"flex"}
-                        justifyContent={"space-between"}>
-                        <Text fontSize={16} fontWeight={400}>
-                          Days:
-                        </Text>{" "}
-                        <Text>{dayjs(dateTo).diff(dateFrom, "days")}</Text>
-                      </ListItem>
-                      <ListItem
-                        display={"flex"}
-                        justifyContent={"space-between"}>
-                        <Text fontSize={16} fontWeight={400}>
-                          Total(£):
+                    <Button
+                      width={"full"}
+                      bg={"#00e995"}
+                      isDisabled={loginUser === carOwner}
+                      rounded={12}
+                      mt={4}
+                      type='submit'
+                      color={"#001a2c"}>
+                      Book Car
+                    </Button>
+                  </form>
+                  {dateFrom | (dateTo === "") ? (
+                    ""
+                  ) : (
+                    <Flex
+                      width={"100%"}
+                      alignItems={"center"}
+                      justifyContent={"center"}>
+                      <UnorderedList
+                        px={4}
+                        width={"90%"}
+                        pt={4}
+                        listStyleType={"none"}
+                        color={"#ffffff"}
+                        fontSize={17}
+                        fontWeight={600}>
+                        <Text fontWeight={600} fontSize={20}>
+                          Summary
                         </Text>
+                        <ListItem
+                          display={"flex"}
+                          justifyContent={"space-between"}>
+                          <Text fontSize={16} fontWeight={400}>
+                            Days:
+                          </Text>{" "}
+                          <Text>{dayjs(dateTo).diff(dateFrom, "days")}</Text>
+                        </ListItem>
+                        <ListItem
+                          display={"flex"}
+                          justifyContent={"space-between"}>
+                          <Text fontSize={16} fontWeight={400}>
+                            Total(£):
+                          </Text>
 
-                        <Text>
-                          £{dayjs(dateTo).diff(dateFrom, "days") * data.price}
-                        </Text>
-                      </ListItem>
-                    </UnorderedList>
-                  </Flex>
-                )}
-              </Box>
+                          <Text>
+                            £{dayjs(dateTo).diff(dateFrom, "days") * data.price}
+                          </Text>
+                        </ListItem>
+                      </UnorderedList>
+                    </Flex>
+                  )}
+                </Box>
+              )}
             </Flex>
           </Flex>
         </Box>

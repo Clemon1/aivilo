@@ -22,6 +22,7 @@ const Dashboard = lazy(() => import("./pages/dashboadPages/dashboard"));
 const SingleCar = lazy(() => import("./pages/Cars/singleCars"));
 const MyBookings = lazy(() => import("./pages/dashboadPages/myBookings"));
 const MyVehicle = lazy(() => import("./pages/Cars/myVehicle"));
+const CreateCar = lazy(() => import("./pages/Cars/createCar"));
 const Profile = lazy(() => import("./pages/dashboadPages/profile"));
 const Success = lazy(() => import("./pages/dashboadPages/success"));
 const Cancelled = lazy(() => import("./pages/dashboadPages/cancelled"));
@@ -74,6 +75,10 @@ function App() {
         <Route
           path='myvehicles'
           element={!user ? <Navigate to={"/"} /> : <MyVehicle />}
+        />
+        <Route
+          path='/createCar'
+          element={!user ? <Navigate to={"/"} /> : <CreateCar />}
         />
         <Route
           path='/profile'

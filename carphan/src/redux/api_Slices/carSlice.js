@@ -27,6 +27,17 @@ export const carApi = createApi({
       query: (id) => `single/${id}`,
       providesTags: ["Car"],
     }),
+    createCar: build.mutation({
+      query(body) {
+        return {
+          url: `/create`,
+          method: "POST",
+          body,
+        };
+      },
+
+      invalidatesTags: ["Car"],
+    }),
     rateCar: build.mutation({
       query(data) {
         const { id, ...body } = data;
@@ -47,5 +58,6 @@ export const {
   useUserCarQuery,
   useRecommendCarQuery,
   useSingleCarsQuery,
+  useCreateCarMutation,
   useRateCarMutation,
 } = carApi;
