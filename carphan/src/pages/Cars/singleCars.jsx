@@ -38,10 +38,12 @@ import { FaLocationDot } from "react-icons/fa6";
 import { useCreateBookingMutation } from "../../redux/api_Slices/bookingSlice";
 import dayjs from "dayjs";
 import { FaStar } from "react-icons/fa";
+import Analytics from "../../components/Analytics";
 
 const SingleCar = () => {
   const { id } = useParams();
   const { data = {} } = useSingleCarsQuery(id);
+  console.log(data);
   const user = useSelector(currentUser);
   const [dateFrom, setFromDate] = useState("");
   const [dateTo, setToDate] = useState("");
@@ -119,7 +121,7 @@ const SingleCar = () => {
               <Accordion width={"full"} defaultIndex={[0]} allowMultiple>
                 <AccordionItem>
                   <h2>
-                    <AccordionButton color={"#ffffff"}>
+                    <AccordionButton bg={"#00283F"} color={"#ffffff"}>
                       <Box
                         as='span'
                         color={"#ffffff"}
@@ -138,7 +140,7 @@ const SingleCar = () => {
                 </AccordionItem>
                 <AccordionItem>
                   <h2>
-                    <AccordionButton color={"#ffffff"}>
+                    <AccordionButton bg={"#00283F"} color={"#ffffff"}>
                       <Box
                         as='span'
                         color={"#ffffff"}
@@ -261,14 +263,32 @@ const SingleCar = () => {
               </Flex>
             </Flex>
             <Flex width={"50%"} justifyContent={"center"} position={"relative"}>
-              {loginUser === carOwner ? (
+              {loginUser != carOwner ? (
                 <Box
                   width={"90%"}
                   bg={"#00283F"}
                   rounded={12}
                   transition={".3s ease-in-out all"}
                   height={"100vh"}
-                  position={"relative"}></Box>
+                  s
+                  position={"relative"}>
+                  {data && data.currentBookings <= 0 ? (
+                    <Flex
+                      width={"100%"}
+                      height={"30%"}
+                      justifyContent={"center"}
+                      alignItems={"center"}>
+                      <Text
+                        fontSize={18}
+                        textAlign={"center"}
+                        color={"#ffffff"}>
+                        No bookings found!
+                      </Text>
+                    </Flex>
+                  ) : (
+                    <Analytics price={data && data.currentBookings} />
+                  )}
+                </Box>
               ) : (
                 <Box
                   width={"35%"}

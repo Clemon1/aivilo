@@ -6,7 +6,7 @@ import booking from "../model/bookingModel.js";
 export const viewAllCars = async (req, res) => {
   try {
     const viewCar = await cars
-      .find({}, "-currentBookings")
+      .find({})
       .sort({ createdAt: -1 })
       .populate("user")
       .exec();
@@ -31,8 +31,9 @@ export const viewSingleCar = async (req, res) => {
   try {
     const { id } = req.params;
     const viewCar = await cars
-      .findById(id, "-currentBookings")
+      .findById(id)
       .populate("user")
+      .populate("currentBookings")
       .exec();
     res.status(200).json(viewCar);
   } catch (err) {
