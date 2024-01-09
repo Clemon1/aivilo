@@ -105,10 +105,14 @@ const SingleCar = () => {
             bg={"#00111C"}
             width={"100%"}
             gap={2}
+            flexDirection={["column", "column", "column", "row", "row"]}
             height={"fit-content"}
             paddingX={10}
             justifyContent={"center"}>
-            <Flex width={"50%"} flexDirection={"column"} gap={2}>
+            <Flex
+              width={["100%", "100%", "100%", "100%", "50%"]}
+              flexDirection={"column"}
+              gap={2}>
               <Image
                 width={"full"}
                 height={"45vh"}
@@ -261,7 +265,10 @@ const SingleCar = () => {
                 </form>
               </Flex>
             </Flex>
-            <Flex width={"50%"} justifyContent={"center"} position={"relative"}>
+            <Flex
+              width={["100%", "100%", "100%", "100%", "50%"]}
+              justifyContent={"center"}
+              position={"relative"}>
               {loginUser === carOwner ? (
                 <Box
                   width={"90%"}
