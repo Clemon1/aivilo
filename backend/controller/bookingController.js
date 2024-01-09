@@ -148,9 +148,7 @@ export const createBooking = async (req, res) => {
     const noti = await notification.create({
       userId: carOwner.user,
       title: "New Booking",
-      message: `${carOwner.name} has been booked by ${fullName} from ${Date(
-        dateFrom,
-      )} to ${Date(dateTo)}`,
+      message: `${carOwner.name} has been booked`,
     });
     console.log(noti);
 

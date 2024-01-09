@@ -95,7 +95,7 @@ const SingleCar = () => {
         <Sidebar />
         <Box width={"100%"} height={"100vh"} bg={"#00111C"} paddingY={4}>
           <TopNav />
-          <Box paddingX={10} paddingY={2} width={"full"} height={"8vh"}>
+          <Box paddingX={10} paddingY={2} mb={5} width={"full"} height={"8vh"}>
             <Text fontSize={22} fontWeight={500} color={"#ffffff"}>
               {data.name} -- £{data.price}/day
             </Text>
@@ -107,7 +107,7 @@ const SingleCar = () => {
             gap={2}
             flexDirection={["column", "column", "column", "row", "row"]}
             height={"fit-content"}
-            paddingX={10}
+            paddingX={[4, 4, 8, 10, 10]}
             justifyContent={"center"}>
             <Flex
               width={["100%", "100%", "100%", "100%", "50%"]}

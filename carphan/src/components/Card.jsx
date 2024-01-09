@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 const CardComponent = ({ name, image, price, ratings, link }) => {
   return (
     <Card
-      width={["100%", "50%", "45%", "45%", "30%"]}
+      width={["100%", "100%", "45%", "45%", "30%"]}
       height={"45vh"}
       bg={"#00283F"}
       rounded={12}>

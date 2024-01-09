@@ -5,13 +5,14 @@ export const userNotification = async (req, res) => {
   try {
     const { id } = req.params;
     const notify = await notification.find({ userId: id });
-    res.status(200).json(notify);
+    const countNew = await notification.find({ isRead: false }).count();
+    res.status(200).json({ notify, countNew });
   } catch (err) {
     res.status(500).json(err.message);
   }
 };
 
-// Set notifications to read
+// Set notifications to status read
 export const editNotification = async (req, res) => {
   try {
     const { id } = req.params;

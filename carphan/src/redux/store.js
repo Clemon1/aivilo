@@ -4,6 +4,7 @@ import { authApi } from "./api_Slices/authSLice";
 import { carApi } from "./api_Slices/carSlice";
 import { bookingAPI } from "./api_Slices/bookingSlice";
 import { protectApi } from "./api_Slices/protectSlice";
+import { NotificationAPi } from "./api_Slices/notificationSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     [carApi.reducerPath]: carApi.reducer,
     [bookingAPI.reducerPath]: bookingAPI.reducer,
     [protectApi.reducerPath]: protectApi.reducer,
+    [NotificationAPi.reducerPath]: NotificationAPi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([
@@ -19,5 +21,6 @@ export const store = configureStore({
       carApi.middleware,
       bookingAPI.middleware,
       protectApi.middleware,
+      NotificationAPi.middleware,
     ]),
 });

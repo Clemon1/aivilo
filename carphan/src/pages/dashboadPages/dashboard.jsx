@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Tag, Button } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import Sidebar from "../../components/sidebar";
 import TopNav from "../../components/TopNav";
 import CardComponent from "../../components/Card";
@@ -24,10 +24,10 @@ const Dashboard = () => {
           <TopNav />
           <Box paddingX={10} width={"full"}>
             <Text fontSize={20} fontWeight={500} color={"#ffffff"}>
-              Categories
+              All cars
             </Text>
           </Box>
-          <Flex
+          {/* <Flex
             paddingX={10}
             width={"100%"}
             height={"15vh"}
@@ -54,7 +54,7 @@ const Dashboard = () => {
                 See All
               </Button>
             </Flex>
-          </Flex>
+          </Flex> */}
           <Flex
             bg={"#00111C"}
             gap={"1rem"}
@@ -68,7 +68,7 @@ const Dashboard = () => {
               "fit-content",
               "100vh",
             ]}
-            paddingX={10}>
+            paddingX={[4, 4, 8, 10, 10]}>
             {cars.length <= 0 && (
               <Text color={"#ffffff"} fontSize={19} fontWeight={500}>
                 No cars available
