@@ -57,7 +57,7 @@ const Analytics = ({ price }) => {
   return (
     <Flex
       width={"100%"}
-      height={"50%"}
+      height={"50vh"}
       rounded={12}
       bg={"#00111C"}
       color={"#ffffff"}>

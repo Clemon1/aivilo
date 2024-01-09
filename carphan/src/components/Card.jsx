@@ -13,7 +13,11 @@ import { Link } from "react-router-dom";
 // eslint-disable-next-line react/prop-types
 const CardComponent = ({ name, image, price, ratings, link }) => {
   return (
-    <Card width={"30%"} height={"45vh"} bg={"#00283F"} rounded={12}>
+    <Card
+      width={["100%", "50%", "45%", "45%", "30%"]}
+      height={"45vh"}
+      bg={"#00283F"}
+      rounded={12}>
       <Link to={link}>
         <CardBody padding={0} bg={"#00283F"} rounded={12}>
           <Image

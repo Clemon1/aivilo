@@ -24,6 +24,7 @@ const Sidebar = () => {
     <Flex
       width={"22%"}
       height={"100vh"}
+      display={["none", "none", "none", "none", "block"]}
       bg={"#00111C"}
       borderRight={"2px #00283F solid"}>
       <Flex

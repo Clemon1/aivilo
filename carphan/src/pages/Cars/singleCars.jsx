@@ -48,7 +48,8 @@ const SingleCar = () => {
   const [dateFrom, setFromDate] = useState("");
   const [dateTo, setToDate] = useState("");
   const [createBooking] = useCreateBookingMutation();
-
+  const carOwner = data && data.user && data.user._id;
+  const loginUser = user && user.otherInfo && user.otherInfo._id;
   const toast = useToast();
   //RTK QUERY MUTATION
   const handleBooking = async (e) => {
@@ -87,8 +88,6 @@ const SingleCar = () => {
       });
     }
   };
-  const carOwner = data && data.user && data.user._id;
-  const loginUser = user && user.otherInfo && user.otherInfo._id;
 
   return (
     <Box className='home1' width={"100%"} height={"fit-content"} bg={"#00111C"}>
@@ -263,31 +262,54 @@ const SingleCar = () => {
               </Flex>
             </Flex>
             <Flex width={"50%"} justifyContent={"center"} position={"relative"}>
-              {loginUser != carOwner ? (
+              {loginUser === carOwner ? (
                 <Box
                   width={"90%"}
                   bg={"#00283F"}
                   rounded={12}
                   transition={".3s ease-in-out all"}
                   height={"100vh"}
-                  s
                   position={"relative"}>
-                  {data && data.currentBookings <= 0 ? (
-                    <Flex
-                      width={"100%"}
-                      height={"30%"}
-                      justifyContent={"center"}
-                      alignItems={"center"}>
-                      <Text
-                        fontSize={18}
-                        textAlign={"center"}
-                        color={"#ffffff"}>
-                        No bookings found!
-                      </Text>
-                    </Flex>
-                  ) : (
-                    <Analytics price={data && data.currentBookings} />
-                  )}
+                  <Analytics price={data && data.currentBookings} />
+                  <Accordion width={"full"} defaultIndex={[0]} allowMultiple>
+                    <AccordionItem>
+                      <h2>
+                        <AccordionButton bg={"#00283F"} color={"#ffffff"}>
+                          <Box
+                            as='span'
+                            color={"#ffffff"}
+                            fontSize={17}
+                            fontWeight={500}
+                            flex='1'
+                            textAlign='left'>
+                            Booking history
+                          </Box>
+                          <AccordionIcon />
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel pb={4} color={"#ffffff"}>
+                        {data &&
+                        data.currentBookings &&
+                        data.currentBookings.length > 0 ? (
+                          data.currentBookings.map((e, key) => (
+                            <Flex
+                              key={key}
+                              width={"full"}
+                              padding={2}
+                              justifyContent={"space-between"}>
+                              <Box>{e.email}</Box>
+                              <Box>${e.price}</Box>
+                              <Box>
+                                {dayjs(e.dateTo).diff(e.dateFrom, "days")} days
+                              </Box>
+                            </Flex>
+                          ))
+                        ) : (
+                          <p>No bookings available</p>
+                        )}
+                      </AccordionPanel>
+                    </AccordionItem>
+                  </Accordion>
                 </Box>
               ) : (
                 <Box

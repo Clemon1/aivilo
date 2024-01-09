@@ -59,8 +59,15 @@ const Dashboard = () => {
             bg={"#00111C"}
             gap={"1rem"}
             width={"100%"}
-            wrap={"wrap"}
-            height={"100vh"}
+            justifyContent={"center"}
+            flexWrap={"wrap"}
+            height={[
+              "fit-content",
+              "fit-content",
+              "fit-content",
+              "fit-content",
+              "100vh",
+            ]}
             paddingX={10}>
             {cars.length <= 0 && (
               <Text color={"#ffffff"} fontSize={19} fontWeight={500}>
